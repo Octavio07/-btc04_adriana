@@ -1,0 +1,7 @@
+<LoginModel.php
+namespace App\Models;
+
+class LoginModel extends model
+{
+       protected $table = 'user';
+}
