@@ -1,0 +1,38 @@
+<LoginController.php
+namespace App\Controllers;
+use App\Models\LoginModel;
+use CodeIgniter\Controller;
+
+Class LoginController extends Controller
+{
+      private $login = ' ' ;
+      public function __construct(){
+      
+         $this->login = new loginModel();
+      }
+      // show login form
+      public function index()    {
+      
+          $session = session();
+          $session->setFlashdata('msg', '');
+       return view('login');
+       }
+       
+       //check user is exist or not
+       public function login(){
+       
+         $data = array('user_name' =>$this->->request-
+    >getVar('user_id'),'password'=>md5($this->request-
+    >getVar('password')));
+           $user = $this->login->where($data);
+           $row = $this->login->countAllResults();
+           $session = session();
+           if($rows==1){
+               return view('success');
+          }else{
+               $sessionn->setFlashdata('msg', 'Invalid User');
+               return view('login');
+               
+            }
+        }
+ }    
